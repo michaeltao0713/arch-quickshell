@@ -1,11 +1,8 @@
-// import "modules"
-import "modules/bar"
-import "modules/osd"
+import "bar"
 import Quickshell
 
 ShellRoot{
 
     Bar {}
-    // Osd {}
 
 }
