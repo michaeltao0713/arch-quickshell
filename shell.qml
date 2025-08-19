@@ -1,4 +1,7 @@
+//@ pragma UseQApplication
+
 import "modules/bar"
+// import QtQuick
 import Quickshell
 
 ShellRoot{
@@ -14,9 +17,5 @@ ShellRoot{
                 modelData: model
             }
         }
-    }
-
-
-
-    
+    }    
 }

@@ -7,31 +7,108 @@ PanelWindow {
     required property ShellScreen modelData
 
     screen: modelData
-    color: "transparent"
-    implicitHeight: barBackground.height
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
 
     visible: true
 
-    // Background rectangle for the bar
+    implicitHeight: 50
+    color: "transparent"
+
+    anchors {
+        top: true
+        left: true
+        right: true
+    }
+
+    margins {
+        top: 2
+        left: 20
+        right: 20
+    }
+
+    // Rectangle shape for the Bar
     Rectangle {
         id: barBackground
-        width: parent.width
-        height: 30
-        color: "transparent"
-        anchors.top: parent.top
-        anchors.left: parent.left
+
+        color: Qt.rgba(0, 0, 0, 0.5)
+        // color: "white"
+        radius: 10
+
+        anchors.fill:parent
+
+        border {
+            color: Qt.rgba(0, 0, 0, 0.2)
+            // color: "blue"
+            width: 5
+        }
     }
 
+    // Buttons aligned to the left of the Bar
     RowLayout {
-        id: leftWidgetsRow
+        id: leftButtons
+
         anchors.verticalCenter: barBackground.verticalCenter
         anchors.left: barBackground.left
-        anchors.leftMargin: 18
-        spacing: 12
+        anchors.leftMargin: 16
+        spacing: 10
 
-        Clock {}
+        // Control Panel
+        ControlButton {}
+
+        // Workspaces
+        Workspaces {}
+
+        // Hardware Stats
+
+        // Package List
+    
     }
+
+    // Buttons aligned to the center of the Bar
+    RowLayout {
+        id: centerButtons
+
+        anchors.verticalCenter: barBackground.verticalCenter
+        anchors.horizontalCenter: barBackground.horizontalCenter
+        spacing: 10
+
+        // Media Play Panel
+
+    }
+
+
+    // Buttons aligned to the right of the Bar
+    RowLayout {
+        id: rightButtons
+        
+        anchors.verticalCenter: barBackground.verticalCenter
+        anchors.right: barBackground.right
+        anchors.rightMargin: 16
+        spacing: 10
+
+        // Network Panel
+
+        // Bluetooth Panel
+
+        // Battery
+
+        // Volume Panel
+
+        // Clock/Time
+        Clock {}
+
+
+        // System Tray
+
+        // Notifications
+    }
+
+
+
+    
+
+    
+
+
+
+    
 }

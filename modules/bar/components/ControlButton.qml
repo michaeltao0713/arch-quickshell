@@ -4,17 +4,17 @@ import QtQuick
 Rectangle {
 
     width: 60
-    height: 24
+    height: 30
     radius: 3
 
-    color: "black"
+    color: "light blue"
     // border.color: "black"
     // border.width: 2
 
     Text {
         id: text
 
-        color: "light blue"
+        color: "white"
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -24,5 +24,12 @@ Rectangle {
         // font.pointSize: Appearance.font.size.smaller
         // font.family: Appearance.font.family.mono
         // color: root.colour
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            // Open the control panel thing
+        }
     }
 }
