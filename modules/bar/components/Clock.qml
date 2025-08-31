@@ -1,28 +1,54 @@
+import qs.config
 import qs.services
 import QtQuick
 
 Rectangle {
 
-    width: 60
+    width: 98
     height: 24
-    radius: 3
+    radius: 8
 
-    color: "black"
-    // border.color: "black"
-    // border.width: 2
+    color: ColorConfig.bar_accent
 
-    Text {
-        id: text
+    Rectangle {
 
-        color: "light blue"
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+        }
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        width: 74
+        radius: 8
 
-        text: Time.format("hh:mm A")
+        color: ColorConfig.bar_element
 
-        // font.pointSize: Appearance.font.size.smaller
-        // font.family: Appearance.font.family.mono
-        // color: root.colour
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+
+            color: ColorConfig.bar_text
+
+            text: Time.format("hh:mm A")
+        }
+
+        // Extremely scuffed rectangle for the overriding corner rounding
+        Rectangle {
+            anchors {
+                top: parent.top
+                left: parent.left
+                bottom: parent.bottom
+            }
+            width: 8
+            color: ColorConfig.bar_element
+        }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            // Handle click event
+            console.log("Clock clicked");
+        }
     }
 }

@@ -8,31 +8,26 @@ import Quickshell.Io
 Singleton {
 
     // readonly property color shadow_primary: "#06060b"
-    // readonly property color shadow_secondary: Qt.alpha(pywal.colors.color0, 0.90)
-    // readonly property color shadow_tertiary: Qt.alpha(pywal.colors.color0, 0.30)
+    // readonly property color shadow_secondary: Qt.alpha(wal.colors.color0, 0.90)
+    // readonly property color shadow_tertiary: Qt.alpha(wal.colors.color0, 0.30)
 
-    // readonly property color border_primary: pywal.colors.color8
+    // readonly property color bg_primary: Qt.alpha(wal.colors.color0, 0.98)
+    // readonly property color bg_secondary: Qt.alpha(wal.colors.color0, 0.92)
+    // readonly property color bg_tertiary: Qt.alpha(wal.colors.color0, 0.75)
 
-    // readonly property color bg_primary: Qt.alpha(pywal.colors.color0, 0.98)
-    // readonly property color bg_secondary: Qt.alpha(pywal.colors.color0, 0.92)
-    // readonly property color bg_tertiary: Qt.alpha(pywal.colors.color0, 0.75)
 
-    // readonly property color bg_darker: Qt.alpha(pywal.colors.color0, 0.4)
+    // readonly property color text_primary: wal.special.foreground
+    // readonly property color text_secondary: wal.special.foreground
+    // readonly property color text_accent: wal.special.foreground
+    // readonly property color text_muted: wal.colors.color1
+    // readonly property color text_info: wal.special.foreground
 
-    // readonly property color text_primary: pywal.special.foreground
-    // readonly property color text_secondary: pywal.special.foreground
-    // readonly property color text_accent: pywal.special.foreground
-    // readonly property color text_muted: pywal.colors.color1
-    // readonly property color text_info: pywal.special.foreground
+    readonly property color bar_shadow: Qt.alpha(wal.special.background, 0.4)
+    readonly property color bar_base: Qt.alpha(wal.special.foreground, 0.2)
 
-    readonly property color bar_shadow: Qt.alpha(pywal.special.background, 0.4)
-    readonly property color bar_base: Qt.alpha(pywal.special.foreground, 0.2)
-
-    // readonly property color bar_bg: pywal.special.background
-    // readonly property color bar_text: pywal.special.foreground
-    // readonly property color bar_accent: pywal.colors.color4
-
-    // readonly property color text_disabled: "#737373";
+    readonly property color bar_element: wal.special.background
+    readonly property color bar_text: wal.special.foreground
+    readonly property color bar_accent: wal.colors.color3
 
     FileView {
 
@@ -43,7 +38,7 @@ Singleton {
 
         // Parse JSON into properties above
         JsonAdapter {
-            id: pywal
+            id: wal
 
             // Defaults so bindings don't break before file loads
             property var special: ({ background: "#000000", foreground: "red", cursor: "#ffffff" })

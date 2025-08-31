@@ -4,7 +4,7 @@ import QtQuick
 Rectangle {
 
     width: 60
-    height: 30
+    height: 24
     radius: 3
 
     color: "light blue"

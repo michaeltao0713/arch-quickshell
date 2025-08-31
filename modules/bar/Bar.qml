@@ -10,9 +10,7 @@ PanelWindow {
 
     screen: modelData
 
-    visible: true
-
-    implicitHeight: 50
+    implicitHeight: 40
     color: "transparent"
 
     anchors {
@@ -34,24 +32,20 @@ PanelWindow {
         id: barBackground
 
         color: ColorConfig.bar_base
-        // color: "light blue"
         radius: 8
 
-        // anchors.fill: parent
         anchors.centerIn: parent
         width: parent.width - 100
-        height: parent.height - 16
+        height: parent.height - 10
     }
 
-
-
-    // Buttons aligned to the left of the Bar
+    // Left Side Elements
     RowLayout {
         id: leftButtons
 
         anchors.verticalCenter: barBackground.verticalCenter
         anchors.left: barBackground.left
-        anchors.leftMargin: 16
+        anchors.leftMargin: 10
         spacing: 10
 
         // Control Panel
@@ -66,7 +60,7 @@ PanelWindow {
     
     }
 
-    // Buttons aligned to the center of the Bar
+    // Center Elements
     RowLayout {
         id: centerButtons
 
@@ -78,8 +72,7 @@ PanelWindow {
 
     }
 
-
-    // Buttons aligned to the right of the Bar
+    // Right Side Elements
     RowLayout {
         id: rightButtons
         
@@ -104,14 +97,6 @@ PanelWindow {
 
         // Notifications
     }
-
-
-
-    
-
-    
-
-
 
     
 }
