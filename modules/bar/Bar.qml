@@ -1,5 +1,7 @@
 import "components"
+import qs.config
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 
@@ -19,28 +21,29 @@ PanelWindow {
         right: true
     }
 
-    margins {
-        top: 2
-        left: 20
-        right: 20
+    RectangularShadow {
+        anchors.fill: barBackground
+        radius: barBackground.radius
+        blur: 3
+        spread: 4
+        color: ColorConfig.bar_shadow
     }
 
     // Rectangle shape for the Bar
     Rectangle {
         id: barBackground
 
-        color: Qt.rgba(0, 0, 0, 0.5)
-        // color: "white"
-        radius: 10
+        color: ColorConfig.bar_base
+        // color: "light blue"
+        radius: 8
 
-        anchors.fill:parent
-
-        border {
-            color: Qt.rgba(0, 0, 0, 0.2)
-            // color: "blue"
-            width: 5
-        }
+        // anchors.fill: parent
+        anchors.centerIn: parent
+        width: parent.width - 100
+        height: parent.height - 16
     }
+
+
 
     // Buttons aligned to the left of the Bar
     RowLayout {
