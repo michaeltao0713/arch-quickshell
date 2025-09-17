@@ -1,17 +1,21 @@
+import "../popouts"
 import qs.config
 import qs.services
 import QtQuick
+import Quickshell
 
 Rectangle {
+    id: clockElement
+
+    required property ShellScreen screen
 
     width: 98
-    height: 24
+    height: AppearanceConfig.bar_element_height
     radius: 8
 
     color: ColorConfig.bar_accent
 
     Rectangle {
-
         anchors {
             top: parent.top
             right: parent.right
@@ -46,9 +50,15 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: {
-            // Handle click event
-            console.log("Clock clicked");
+        cursorShape: Qt.PointingHandCursor
+        onClicked: function() {
+            timePopout.visible = !timePopout.visible
         }
+    }
+
+    TimePopout {
+        id: timePopout
+        screen: clockElement.screen
+        visible: false
     }
 }

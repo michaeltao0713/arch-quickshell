@@ -1,40 +1,26 @@
-import Quickshell.Io
+pragma Singleton
 
-JsonObject {
-    property Colors colors: Colors {}
-    property Rounding rounding: Rounding {}
-    property Spacing spacing: Spacing {}
-    // Padding
-    // Font
-    // Animation
-    // Transparency
+import Quickshell
 
-    component Colors: JsonObject {
-        property string background: "#202020"
-        property string foreground: "#ffffff"
-        property string primary: "#3a86ff"
-        property string secondary: "#ff006e"
-        property string accent: "#fb5607"
-        property string success: "#4caf50"
-        property string warning: "#ff9800"
-        property string error: "#f44336"
-        property string info: "#2196f3"
-    }
+Singleton {
 
-    component Rounding: JsonObject {
-        property real scale: 1
-        property int small: 12 * scale
-        property int normal: 17 * scale
-        property int large: 25 * scale
-        property int full: 1000 * scale
-    }
+    // Radii
+    readonly property int bar_radius: 10
 
-    component Spacing: JsonObject {
-        property real scale: 1
-        property int small: 7 * scale
-        property int smaller: 10 * scale
-        property int normal: 12 * scale
-        property int larger: 15 * scale
-        property int large: 20 * scale
-    }
+    // Spacing
+    readonly property int bar_element_margin: 16
+    readonly property int bar_element_spacing: 10
+
+    // Heights and Widths
+    readonly property int bar_bg_height: 50
+    readonly property int between_bar_and_screen_hori: 100
+    readonly property int between_bar_and_screen_vert: 10
+
+    readonly property int bar_element_height: bar_bg_height - between_bar_and_screen_vert - 10
+
+    // Fonts
+    // readonly property string bar_font_family: "Roboto"
+    // readonly property int bar_font_size: 12
+    // readonly property int bar_font_weight: Font.Bold
+
 }

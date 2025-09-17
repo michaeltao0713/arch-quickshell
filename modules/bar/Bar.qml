@@ -6,11 +6,13 @@ import QtQuick.Layouts
 import Quickshell
 
 PanelWindow {
+    id: root
+
     required property ShellScreen modelData
 
     screen: modelData
 
-    implicitHeight: 40
+    implicitHeight: AppearanceConfig.bar_bg_height
     color: "transparent"
 
     anchors {
@@ -32,11 +34,11 @@ PanelWindow {
         id: barBackground
 
         color: ColorConfig.bar_base
-        radius: 8
+        radius: AppearanceConfig.bar_radius
 
         anchors.centerIn: parent
-        width: parent.width - 100
-        height: parent.height - 10
+        width: parent.width - AppearanceConfig.between_bar_and_screen_hori
+        height: parent.height - AppearanceConfig.between_bar_and_screen_vert
     }
 
     // Left Side Elements
@@ -45,8 +47,8 @@ PanelWindow {
 
         anchors.verticalCenter: barBackground.verticalCenter
         anchors.left: barBackground.left
-        anchors.leftMargin: 10
-        spacing: 10
+        anchors.leftMargin: AppearanceConfig.bar_element_margin
+        spacing: AppearanceConfig.bar_element_spacing
 
         // Control Panel
         ControlButton {}
@@ -66,7 +68,7 @@ PanelWindow {
 
         anchors.verticalCenter: barBackground.verticalCenter
         anchors.horizontalCenter: barBackground.horizontalCenter
-        spacing: 10
+        spacing: AppearanceConfig.bar_element_spacing
 
         // Media Play Panel
 
@@ -78,8 +80,8 @@ PanelWindow {
         
         anchors.verticalCenter: barBackground.verticalCenter
         anchors.right: barBackground.right
-        anchors.rightMargin: 16
-        spacing: 10
+        anchors.rightMargin: AppearanceConfig.bar_element_margin
+        spacing: AppearanceConfig.bar_element_spacing
 
         // Network Panel
 
@@ -90,13 +92,13 @@ PanelWindow {
         // Volume Panel
 
         // Clock/Time
-        Clock {}
+        Clock {
+            screen: root.modelData
+        }
 
 
         // System Tray
 
         // Notifications
     }
-
-    
 }
