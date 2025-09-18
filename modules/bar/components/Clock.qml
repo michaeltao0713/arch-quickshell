@@ -9,11 +9,39 @@ Rectangle {
 
     required property ShellScreen screen
 
-    width: 98
+    width: 130
     height: AppearanceConfig.bar_element_height
-    radius: 8
+    radius: 10
 
-    color: ColorConfig.bar_accent
+    color: ColorConfig.bar_element
+
+    Rectangle {
+        anchors {
+            top: parent.top
+            left: parent.left
+            bottom: parent.bottom
+        }
+        width: 40
+        radius: 10
+        color: ColorConfig.bar_accent
+
+        Rectangle {
+            anchors {
+                top: parent.top
+                right: parent.right
+                bottom: parent.bottom
+            }
+            width: 10
+            color: parent.color
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: "󰥔"
+
+            font.pixelSize: 18
+        }
+    }
 
     Rectangle {
         anchors {
@@ -21,31 +49,31 @@ Rectangle {
             right: parent.right
             bottom: parent.bottom
         }
-
-        width: 74
-        radius: 8
-
+        width: 90
+        radius: 10
         color: ColorConfig.bar_element
 
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-
-            color: ColorConfig.bar_text
-
-            text: Time.format("hh:mm A")
-        }
-
-        // Extremely scuffed rectangle for the overriding corner rounding
         Rectangle {
             anchors {
                 top: parent.top
                 left: parent.left
                 bottom: parent.bottom
             }
-            width: 8
-            color: ColorConfig.bar_element
+            width: 10
+            color: parent.color
         }
+
+        Text {
+            anchors.centerIn: parent
+
+            color: ColorConfig.bar_text
+
+            text: Time.format("hh:mm A")
+
+            font.family: "CaskaydiaCove Nerd Font"
+            font.pixelSize: 14
+        }
+
     }
 
     MouseArea {

@@ -11,10 +11,13 @@ Singleton {
     // readonly property color shadow_secondary: Qt.alpha(wal.colors.color0, 0.90)
     // readonly property color shadow_tertiary: Qt.alpha(wal.colors.color0, 0.30)
 
-    readonly property color bg_primary: Qt.alpha(Qt.lighter(wal.colors.color0, 1.3), 0.9)
+    // readonly property color bg_primary: Qt.alpha(Qt.lighter(wal.colors.color0, 1.3), 0.9)
+    readonly property color bg_primary: Qt.alpha("black", 0.7)
     // readonly property color bg_secondary: Qt.alpha(wal.colors.color0, 0.92)
     // readonly property color bg_tertiary: Qt.alpha(wal.colors.color0, 0.75)
-    readonly property color bg_border: wal.colors.color5
+    // readonly property color bg_border: wal.colors.color5
+    readonly property color bg_border_gradient_1: wal.colors.color3
+    readonly property color bg_border_gradient_2: wal.colors.color5
 
 
     // readonly property color text_primary: wal.special.foreground

@@ -51,7 +51,7 @@ PanelWindow {
         spacing: AppearanceConfig.bar_element_spacing
 
         // Control Panel
-        ControlButton {}
+        // ControlButton {}
 
         // Workspaces
         Workspaces {}
@@ -94,6 +94,7 @@ PanelWindow {
         // Clock/Time
         Clock {
             screen: root.modelData
+            Layout.alignment: Qt.AlignVCenter
         }
 
 
