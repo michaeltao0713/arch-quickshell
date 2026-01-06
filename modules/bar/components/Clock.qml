@@ -9,10 +9,9 @@ Rectangle {
 
     required property ShellScreen screen
 
-    width: 130
+    width: AppearanceConfig.clock_width
     height: AppearanceConfig.bar_element_height
-    radius: 10
-
+    radius: AppearanceConfig.bar_element_radius
     color: ColorConfig.bar_element
 
     Rectangle {
@@ -21,8 +20,8 @@ Rectangle {
             left: parent.left
             bottom: parent.bottom
         }
-        width: 40
-        radius: 10
+        width: AppearanceConfig.bar_icon_width
+        radius: AppearanceConfig.bar_element_radius
         color: ColorConfig.bar_accent
 
         Rectangle {
@@ -31,15 +30,14 @@ Rectangle {
                 right: parent.right
                 bottom: parent.bottom
             }
-            width: 10
+            width: AppearanceConfig.straight_rectangle_width
             color: parent.color
         }
 
         Text {
             anchors.centerIn: parent
             text: "󰥔"
-
-            font.pixelSize: 18
+            font.pixelSize: AppearanceConfig.bar_icon_font_size
         }
     }
 
@@ -49,8 +47,8 @@ Rectangle {
             right: parent.right
             bottom: parent.bottom
         }
-        width: 90
-        radius: 10
+        width: AppearanceConfig.clock_width - AppearanceConfig.bar_icon_width
+        radius: AppearanceConfig.bar_element_radius
         color: ColorConfig.bar_element
 
         Rectangle {
@@ -59,19 +57,16 @@ Rectangle {
                 left: parent.left
                 bottom: parent.bottom
             }
-            width: 10
+            width: AppearanceConfig.straight_rectangle_width
             color: parent.color
         }
 
         Text {
             anchors.centerIn: parent
-
-            color: ColorConfig.bar_text
-
             text: Time.format("hh:mm A")
-
-            font.family: "CaskaydiaCove Nerd Font"
-            font.pixelSize: 14
+            font.family: AppearanceConfig.bar_element_font_family
+            font.pixelSize: AppearanceConfig.bar_element_font_size
+            color: ColorConfig.bar_text
         }
 
     }

@@ -6,21 +6,20 @@ import QtQuick.Layouts
 import Quickshell
 
 PanelWindow {
-    id: root
+    id: barRoot
 
     required property ShellScreen modelData
 
     screen: modelData
-
-    implicitHeight: AppearanceConfig.bar_bg_height
-    color: "transparent"
-
     anchors {
         top: true
         left: true
         right: true
     }
+    implicitHeight: AppearanceConfig.bar_bg_height
+    color: "transparent"
 
+    // Shadow Effect for the Bar
     RectangularShadow {
         anchors.fill: barBackground
         radius: barBackground.radius
@@ -33,12 +32,11 @@ PanelWindow {
     Rectangle {
         id: barBackground
 
-        color: ColorConfig.bar_base
-        radius: AppearanceConfig.bar_radius
-
-        anchors.centerIn: parent
+        anchors.centerIn: parent        
         width: parent.width - AppearanceConfig.between_bar_and_screen_hori
         height: parent.height - AppearanceConfig.between_bar_and_screen_vert
+        radius: AppearanceConfig.bar_radius
+        color: ColorConfig.bar_base
     }
 
     // Left Side Elements
@@ -93,8 +91,7 @@ PanelWindow {
 
         // Clock/Time
         Clock {
-            screen: root.modelData
-            Layout.alignment: Qt.AlignVCenter
+            screen: barRoot.modelData
         }
 
 
