@@ -1,0 +1,123 @@
+// Colors.js Matugen Colors for quickshell
+
+var darkColors = {
+    "background": "#18120c",
+    "error": "#ffb4ab",
+    "error-container": "#93000a",
+    "inverse-on-surface": "#372f27",
+    "inverse-primary": "#835414",
+    "inverse-surface": "#eee0d5",
+    "on-background": "#eee0d5",
+    "on-error": "#690005",
+    "on-error-container": "#ffdad6",
+    "on-primary": "#472a00",
+    "on-primary-container": "#ffddb9",
+    "on-primary-fixed": "#2b1700",
+    "on-primary-fixed-variant": "#663e00",
+    "on-secondary": "#3f2d17",
+    "on-secondary-container": "#fdddbd",
+    "on-secondary-fixed": "#281805",
+    "on-secondary-fixed-variant": "#58432b",
+    "on-surface": "#eee0d5",
+    "on-surface-variant": "#d4c4b5",
+    "on-tertiary": "#283412",
+    "on-tertiary-container": "#d8e9b7",
+    "on-tertiary-fixed": "#131f02",
+    "on-tertiary-fixed-variant": "#3e4b27",
+    "outline": "#9d8e81",
+    "outline-variant": "#504539",
+    "primary": "#f9bb72",
+    "primary-container": "#663e00",
+    "primary-fixed": "#ffddb9",
+    "primary-fixed-dim": "#f9bb72",
+    "scrim": "#000000",
+    "secondary": "#dfc1a2",
+    "secondary-container": "#58432b",
+    "secondary-fixed": "#fdddbd",
+    "secondary-fixed-dim": "#dfc1a2",
+    "shadow": "#000000",
+    "source-color": "#cf8a2e",
+    "surface": "#18120c",
+    "surface-bright": "#403830",
+    "surface-container": "#251e17",
+    "surface-container-high": "#302921",
+    "surface-container-highest": "#3b332c",
+    "surface-container-low": "#211a13",
+    "surface-container-lowest": "#130d07",
+    "surface-dim": "#18120c",
+    "surface-tint": "#f9bb72",
+    "surface-variant": "#504539",
+    "tertiary": "#bccd9d",
+    "tertiary-container": "#3e4b27",
+    "tertiary-fixed": "#d8e9b7",
+    "tertiary-fixed-dim": "#bccd9d",
+}
+
+function getDarkColors() {
+    return darkColors;
+}
+
+function updateDarkColors(newDarkColors) {
+    darkColors = Object.assign({}, darkColors, newDarkColors);
+}
+
+var lightColors = {
+    "background": "#fff8f4",
+    "error": "#ba1a1a",
+    "error-container": "#ffdad6",
+    "inverse-on-surface": "#fceee3",
+    "inverse-primary": "#f9bb72",
+    "inverse-surface": "#372f27",
+    "on-background": "#211a13",
+    "on-error": "#ffffff",
+    "on-error-container": "#410002",
+    "on-primary": "#ffffff",
+    "on-primary-container": "#2b1700",
+    "on-primary-fixed": "#2b1700",
+    "on-primary-fixed-variant": "#663e00",
+    "on-secondary": "#ffffff",
+    "on-secondary-container": "#281805",
+    "on-secondary-fixed": "#281805",
+    "on-secondary-fixed-variant": "#58432b",
+    "on-surface": "#211a13",
+    "on-surface-variant": "#504539",
+    "on-tertiary": "#ffffff",
+    "on-tertiary-container": "#131f02",
+    "on-tertiary-fixed": "#131f02",
+    "on-tertiary-fixed-variant": "#3e4b27",
+    "outline": "#827568",
+    "outline-variant": "#d4c4b5",
+    "primary": "#835414",
+    "primary-container": "#ffddb9",
+    "primary-fixed": "#ffddb9",
+    "primary-fixed-dim": "#f9bb72",
+    "scrim": "#000000",
+    "secondary": "#715a41",
+    "secondary-container": "#fdddbd",
+    "secondary-fixed": "#fdddbd",
+    "secondary-fixed-dim": "#dfc1a2",
+    "shadow": "#000000",
+    "source-color": "#cf8a2e",
+    "surface": "#fff8f4",
+    "surface-bright": "#fff8f4",
+    "surface-container": "#faebe0",
+    "surface-container-high": "#f4e6da",
+    "surface-container-highest": "#eee0d5",
+    "surface-container-low": "#fff1e6",
+    "surface-container-lowest": "#ffffff",
+    "surface-dim": "#e5d8cc",
+    "surface-tint": "#835414",
+    "surface-variant": "#f1e0d0",
+    "tertiary": "#55633c",
+    "tertiary-container": "#d8e9b7",
+    "tertiary-fixed": "#d8e9b7",
+    "tertiary-fixed-dim": "#bccd9d",
+}
+
+function getLightColors() {
+    return lightColors;
+}
+
+function updateLightColors(newLightColors) {
+    lightColors = Object.assign({}, lightColors, newLightColors);
+}

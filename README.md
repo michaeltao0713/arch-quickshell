@@ -1,6 +1,6 @@
 # arch-quickshell
 
-Basically completely ripped off of [Caelestia Shell](https://github.com/caelestia-dots/shell)
+Heavy inspiration from https://github.com/snes19xx/surface-dots/tree/main/.config/quickshell/snes-hub/bar
 
 ## Setup:
 

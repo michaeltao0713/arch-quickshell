@@ -1,102 +1,115 @@
-import "components"
-import qs.config
 import QtQuick
-import QtQuick.Effects
+// import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
+import qs.configs as Configs
+import "components"
+
 
 PanelWindow {
     id: barRoot
 
-    required property ShellScreen modelData
+    property bool isDarkMode: true
+    property int activeWorkspaceId: Hyprland.focusedMonitor?.activeWorkspace?.id ?? 1
 
-    screen: modelData
-    anchors {
-        top: true
-        left: true
-        right: true
-    }
-    implicitHeight: AppearanceConfig.bar_bg_height
+    anchors { top: true; left: true; right: true }
+
+    implicitHeight: Configs.Appearance.barBgHeight
+    exclusiveZone: Configs.Appearance.barBgHeight
     color: "transparent"
 
-    // Shadow Effect for the Bar
-    RectangularShadow {
-        anchors.fill: barBackground
-        radius: barBackground.radius
-        blur: 3
-        spread: 4
-        color: ColorConfig.bar_shadow
-    }
+    // Rectangle {
+    //     id: debugBG
+    //     anchors.fill: parent
+    //     color: Configs.Color.testColors
+    // }
 
-    // Rectangle shape for the Bar
-    Rectangle {
-        id: barBackground
+    // Rectangle {
+    //     id: debugRowLayout
+    //     anchors.fill: leftElements
+    //     color: "transparent"
+    // }
 
-        anchors.centerIn: parent        
-        width: parent.width - AppearanceConfig.between_bar_and_screen_hori
-        height: parent.height - AppearanceConfig.between_bar_and_screen_vert
-        radius: AppearanceConfig.bar_radius
-        color: ColorConfig.bar_base
-    }
-
-    // Left Side Elements
+    // Left Side Elements: Hub, Workspaces
     RowLayout {
-        id: leftButtons
+        id: leftElements
 
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.left: barBackground.left
-        anchors.leftMargin: AppearanceConfig.bar_element_margin
-        spacing: AppearanceConfig.bar_element_spacing
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        anchors.topMargin: Configs.Appearance.barElementsTopMargin
+        anchors.leftMargin: Configs.Appearance.barElementsSideMargin
+        spacing: Configs.Appearance.barElementsSpacing
 
-        // Control Panel
-        // ControlButton {}
+        // Hub
+        Hub {
+            isDarkMode: barRoot.isDarkMode
+
+            onDarkModeToggleRequest: {
+                barRoot.isDarkMode = !barRoot.isDarkMode
+            }
+        }
 
         // Workspaces
-        Workspaces {}
+        Workspaces {
+            isDarkMode: barRoot.isDarkMode
+            activeWorkspaceId: barRoot.activeWorkspaceId
+        }
+
+
+        Text {
+            text: barRoot.isDarkMode ? "Dark Mode" : "Light Mode"
+        }
 
         // Hardware Stats
 
         // Package List
-    
-    }
-
-    // Center Elements
-    RowLayout {
-        id: centerButtons
-
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.horizontalCenter: barBackground.horizontalCenter
-        spacing: AppearanceConfig.bar_element_spacing
-
-        // Media Play Panel
 
     }
 
-    // Right Side Elements
-    RowLayout {
-        id: rightButtons
-        
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.right: barBackground.right
-        anchors.rightMargin: AppearanceConfig.bar_element_margin
-        spacing: AppearanceConfig.bar_element_spacing
-
-        // Network Panel
-
-        // Bluetooth Panel
-
-        // Battery
-
-        // Volume Panel
-
-        // Clock/Time
-        Clock {
-            screen: barRoot.modelData
-        }
 
 
-        // System Tray
 
-        // Notifications
-    }
+    //     // Center Elements
+    //     RowLayout {
+    //         id: centerButtons
+
+    //         anchors.verticalCenter: barBackground.verticalCenter
+    //         anchors.horizontalCenter: barBackground.horizontalCenter
+    //         spacing: AppearanceConfig.bar_element_spacing
+
+    //         // Media Play Panel
+
+    //     }
+
+    //     // Right Side Elements
+    //     RowLayout {
+    //         id: rightButtons
+
+    //         anchors.verticalCenter: barBackground.verticalCenter
+    //         anchors.right: barBackground.right
+    //         anchors.rightMargin: AppearanceConfig.bar_element_margin
+    //         spacing: AppearanceConfig.bar_element_spacing
+
+    //         // Package List
+
+    //         // Network Panel
+
+    //         // Bluetooth Panel
+
+    //         // Battery
+
+    //         // Volume Panel
+
+    //         // Clock/Time
+    //         // Clock {
+    //         // screen: barRoot.modelData
+    //         // }
+
+    //         // System Tray
+
+    //         // Notifications
+    //     }
+    // }
 }
