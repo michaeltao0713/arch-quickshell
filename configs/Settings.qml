@@ -3,5 +3,5 @@ pragma Singleton
 import Quickshell
 
 Singleton {
-    property bool isDarkMode: true
+    property bool isDarkMode: false
 }

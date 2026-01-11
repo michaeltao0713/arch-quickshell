@@ -2,8 +2,8 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
 import qs.configs as Configs
+import qs.styled as Styled
 import qs.utils as Utils
 
 Rectangle {
@@ -17,11 +17,11 @@ Rectangle {
     property int pressedId: 0
     property var pressedItem: (pressedId > 0) ? wsRepeater.itemAt(pressedId - 1) : null
 
+    Layout.alignment: Qt.AlignVCenter
     Layout.preferredHeight: Configs.Appearance.barElementsHeight
     Layout.preferredWidth: wsRow.width + 30
-    Layout.alignment: Qt.AlignVCenter
-    color: Configs.Color.barElementBg
     radius: Configs.Appearance.barElementRadius
+    color: Configs.Color.barElementBg
     clip: true
 
     // Active Workspace BG
@@ -33,10 +33,20 @@ Rectangle {
         height: Configs.Appearance.wsActiveHeight
         width: targetItem ? targetItem.width : 0
         radius: height / 2
-        color: Configs.Color.wsActiveColor
+        color: Configs.Color.wsBgActiveColor
 
-        Behavior on x { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
-        Behavior on width { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
+        Behavior on x {
+            NumberAnimation {
+                duration: Configs.Appearance.wsDuration
+                easing.type: Easing.OutCubic
+            }
+        }
+        Behavior on width {
+            NumberAnimation {
+                duration: Configs.Appearance.wsDuration
+                easing.type: Easing.OutCubic
+            }
+        }
     }
 
     // Hover Workspace BG
@@ -48,22 +58,33 @@ Rectangle {
         height: Configs.Appearance.wsActiveHeight
         width: targetItem ? targetItem.width : 0
         radius: height / 2
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: Configs.Color.wsHoverEdgeColor }
-            GradientStop { position: 0.45; color: Configs.Color.wsHoverMiddleColor }
-            GradientStop { position: 1.0; color: Configs.Color.wsHoverEdgeColor }
-        }
+        color: Configs.Color.wsBgHoverColor
         visible: wsRoot.hoveredId > 0 && wsRoot.hoveredId !== wsRoot.activeWsId
         opacity: visible ? 1 : 0
-        
-        Behavior on x { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
-        Behavior on width { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
-        Behavior on opacity { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
+
+        Behavior on x {
+            NumberAnimation {
+                duration: Configs.Appearance.wsDuration
+                easing.type: Easing.OutCubic
+            }
+        }
+        Behavior on width {
+            NumberAnimation {
+                duration: Configs.Appearance.wsDuration
+                easing.type: Easing.OutCubic
+            }
+        }
+        Behavior on opacity {
+            NumberAnimation {
+                duration: Configs.Appearance.wsDuration
+                easing.type: Easing.OutCubic
+            }
+        }
     }
 
     Row {
         id: wsRow
-        
+
         anchors.centerIn: parent
         spacing: 2
 
@@ -73,7 +94,7 @@ Rectangle {
             model: 12
             Item {
                 id: wsDelegate
-                
+
                 required property int index
                 property int wsId: index + 1
                 property bool isActive: wsRoot.activeWsId === wsId
@@ -89,32 +110,38 @@ Rectangle {
                 height: 34
                 scale: (wsPress.pressed ? Configs.Appearance.wsIconPressScale : 1) * ((!isActive && wsHover.hovered) ? Configs.Appearance.wsIconHoverScale : 1)
 
-                Behavior on y { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
-                Behavior on scale { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
+                Behavior on y {
+                    NumberAnimation {
+                        duration: Configs.Appearance.wsDuration
+                        easing.type: Easing.OutCubic
+                    }
+                }
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: Configs.Appearance.wsDuration
+                        easing.type: Easing.OutCubic
+                    }
+                }
 
                 HoverHandler {
                     id: wsHover
 
                     onHoveredChanged: {
                         if (hovered)
-                        wsRoot.hoveredId = wsDelegate.wsId
+                            wsRoot.hoveredId = wsDelegate.wsId;
                         else if (wsRoot.hoveredId === wsDelegate.wsId)
-                        wsRoot.hoveredId = 0
+                            wsRoot.hoveredId = 0;
                     }
                 }
 
                 // Empty Workspace Dot
-                Text {
+                Styled.BarIconText {
                     anchors.centerIn: parent
                     verticalAlignment: Text.AlignVCenter
                     visible: !wsDelegate.hasWindows
                     text: "•"
-                    font.family: Configs.Appearance.wsIconFontFamily
-                    font.pixelSize: Configs.Appearance.wsIconFontSize
                     lineHeight: 0.8
                     color: wsDelegate.isActive ? Configs.Color.wsIconActiveColor : (wsHover.hovered ? Configs.Color.wsIconHoverColor : Configs.Color.wsIconInactiveColor)
-                    
-                    Behavior on color { ColorAnimation { duration: Configs.Appearance.wsDuration } }
                 }
 
                 // Workspace Windows Icons
@@ -150,18 +177,13 @@ Rectangle {
                                 }
                             }
 
-                            Text {
+                            Styled.BarIconText {
                                 anchors.centerIn: parent
                                 verticalAlignment: Text.AlignVCenter
                                 text: Utils.Icons.getIcon(itemRoot.modelData)
-                                font.family: Configs.Appearance.wsIconFontFamily
-                                font.pixelSize: Configs.Appearance.wsIconFontSize
                                 lineHeight: 0.8
                                 color: wsDelegate.isActive ? Configs.Color.wsIconActiveColor : (itemRoot.modelData.urgent ? urgentColorAnimation.urgentColor : (wsHover.hovered ? Configs.Color.wsIconHoverColor : Configs.Color.wsIconInactiveColor))
                                 scale: (wsDelegate.isActive && wsHover.hovered) ? 1.3 : 1
-
-                                Behavior on color { enabled: !itemRoot.modelData.urgent; ColorAnimation { duration: Configs.Appearance.wsDuration } }
-                                Behavior on scale { NumberAnimation { duration: Configs.Appearance.wsDuration; easing.type: Easing.OutCubic } }
                             }
                         }
                     }
@@ -177,7 +199,7 @@ Rectangle {
                         wsRoot.pressedId = 0
                     onCanceled: if (wsRoot.pressedId === wsDelegate.wsId)
                         wsRoot.pressedId = 0
-                    onClicked: Quickshell.execDetached(["bash", "-c", ("hyprctl dispatch workspace " + wsDelegate.wsId)])
+                    onClicked: Utils.Commands.det("hyprctl dispatch workspace " + wsDelegate.wsId)
                 }
             }
         }
