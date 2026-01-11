@@ -11,5 +11,44 @@ Create `exec-once` rule in `hyprland.conf`.
 Currently relying on `pywal` for colors and `swww` for setting/changing wallpapers.
 
 Fonts needed: `ttf-nerd-fonts-symbols`, `ttf-cascadia-code-nerd`, `ttf-fira-code` <-- Set in the settings for vscode too (fira code only)
+Install 'ttf-firacode-nerd' for rendering icons in VSCode
 
 <!-- Need to install `ddcutil`, `brightnessctl` for monitor detection and brightness control respectively. -->
+
+## Roadmap:
+
+ - [x] Add Hub Button
+   - [ ] Add Hub Panel
+     - [ ] Power Options
+     - [ ] Hardware Info
+     - [ ] System Info
+     - [ ] Calendar
+     - [ ] Bascially copy over from surface-dots
+   - [ ] Change shell-wide theme when right clicking Hub Button
+     - [ ] Make sure both monitors change theme if using multiple monitors
+ - [ ] Add Workspaces
+   - [x] Support for icons
+     - [x] Get fonts working properly
+ - [ ] Package Stats
+   - [ ] System Update
+ - [ ] Add Music Controls and Currently Playing
+ - [ ] Network Info and Controls
+ - [ ] Bluetooth Info and Controls
+ - [ ] Battery Info and Controls
+ - [ ] Volume Info and Controls
+ - [ ] System Tray
+ - [ ] Clock with Calendar Popup
+ - [ ] Notifications
+ - [ ] Dynamic Color based on Wallpaper
+   - [x] Integrate with Matugen
+   - [ ] Quickshell reloads on Matugen change
+   - [ ] Script to change wallpaper and set colors with matugen
+ - [ ] Volume and Brightness OSDs
+
+
+
+
+
+
+
+
