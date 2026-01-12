@@ -40,7 +40,7 @@ Styled.BarRectangle {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton
         onClicked: {
-            // TODO: Open a calendar popup
+            // TODO: Open a calendar popup, toggle visibility on a popup?
         }
     }
 }
