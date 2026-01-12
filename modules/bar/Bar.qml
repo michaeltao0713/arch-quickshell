@@ -14,14 +14,17 @@ PanelWindow {
 
     anchors { top: true; left: true; right: true }
     implicitHeight: Configs.Appearance.barBgHeight
-    exclusiveZone: Configs.Appearance.barBgHeight
+    exclusiveZone: implicitHeight
     color: "transparent"
 
     // Event Listener + scheduleRebuild
     Connections {
         target: Hyprland
         function onRawEvent(ev) {
-            if (!ev || !ev.name) return
+            if (!ev || !ev.name) {
+                console.log("Invalid Hyprland event received:", ev)
+                return
+            }
 
             if (ev.name === "openwindow" || ev.name === "closewindow" ||
                     ev.name === "movewindowv2" || ev.name === "workspacev2" ||

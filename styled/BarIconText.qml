@@ -6,7 +6,7 @@ Base.Text {
     renderType: Text.QtRendering
     font.family: Configs.Appearance.wsIconFontFamily
     font.pointSize: Configs.Appearance.wsIconFontSize
-    
+
     Behavior on color {
         ColorAnimation {
             duration: Configs.Appearance.wsDuration

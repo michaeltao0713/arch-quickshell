@@ -9,6 +9,7 @@ QtObject {
 
     function rebuild() {
         const m = {}
+        
         const list = Hyprland.toplevels?.values ?? []
         for (const tl of list) {
             const id = tl?.workspace?.id
@@ -31,12 +32,6 @@ QtObject {
             rebuild()
         })
     }
+    
     Component.onCompleted: rebuild()
-
-    property Timer timer: Timer {
-        interval: 2000
-        running: true
-        repeat: false
-        onTriggered: hyCache.rebuild()
-    }
 }

@@ -57,10 +57,6 @@ function getDarkColors() {
     return darkColors;
 }
 
-function updateDarkColors(newDarkColors) {
-    darkColors = Object.assign({}, darkColors, newDarkColors);
-}
-
 var lightColors = {
     "background": "#eefcfd",
     "error": "#ba1a1a",
@@ -116,8 +112,4 @@ var lightColors = {
 
 function getLightColors() {
     return lightColors;
-}
-
-function updateLightColors(newLightColors) {
-    lightColors = Object.assign({}, lightColors, newLightColors);
 }

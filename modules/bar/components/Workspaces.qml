@@ -91,7 +91,7 @@ Rectangle {
         Repeater {
             id: wsRepeater
 
-            model: 12
+            model: Configs.Settings.workspaceCount
             Item {
                 id: wsDelegate
 
@@ -106,7 +106,7 @@ Rectangle {
                 property bool isUrgent: wsWindows.some(tl => tl.urgent)
 
                 y: wsPress.pressed ? Configs.Appearance.wsIconElevation : ((!isActive && wsHover.hovered) ? -Configs.Appearance.wsIconElevation : 0)
-                width: hasWindows ? (winCount * 22 + 12) : height
+                width: hasWindows ? (winCount * Configs.Appearance.wsIconSize + 12) : height
                 height: 34
                 scale: (wsPress.pressed ? Configs.Appearance.wsIconPressScale : 1) * ((!isActive && wsHover.hovered) ? Configs.Appearance.wsIconHoverScale : 1)
 

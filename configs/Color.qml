@@ -9,6 +9,9 @@ Singleton {
     // Set colors based on dark mode setting
     readonly property var colors: Configs.Settings.isDarkMode ? Colors.darkColors : Colors.lightColors
 
+    // Hub
+    readonly property color hubIconColor: Configs.Settings.isDarkMode ? "#89b4fa" : "#1e66f5"
+
     // Bar Elements
     readonly property color barElementBg: Qt.alpha(colors["on-background"], 0.2)
 

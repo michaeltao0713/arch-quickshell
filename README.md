@@ -28,7 +28,7 @@ Install `matugen` for dynamic color from wallpaper. Use with `vibrant` type for 
      - [ ] Hardware Info
      - [ ] System Info
      - [ ] Calendar
-     - [ ] Bascially copy over from surface-dots
+     - [ ] Basically copy over from surface-dots
    - [ ] Change shell-wide theme when right clicking Hub Button
      - [ ] Make sure both monitors change theme if using multiple monitors
  - [x] Add Workspaces

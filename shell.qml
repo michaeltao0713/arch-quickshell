@@ -9,7 +9,7 @@ ShellRoot{
     Variants {
         model: Quickshell.screens
 
-        // Separate scope for each screen variant. Individual Bar and Hub instances.
+        // Separate scope for each screen variant. Individual Bar instances.
         Scope {
             id: variant
 

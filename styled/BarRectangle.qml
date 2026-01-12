@@ -44,6 +44,7 @@ Base.Rectangle {
 
     NumberAnimation {
         id: shimmerAnimation
+        
         target: shimmer
         property: "x"
         from: -60
@@ -53,7 +54,8 @@ Base.Rectangle {
     }
 
     MouseArea {
-        id: clockArea
+        id: clickArea
+
         anchors.fill: parent
         hoverEnabled: true
         onEntered: shimmerAnimation.restart()
@@ -63,7 +65,7 @@ Base.Rectangle {
         anchors.fill: parent
         radius: height / 2
         color: Configs.Color.barElementOpacityColor
-        opacity: clockArea.pressed ? 0.18 : (clockArea.containsMouse ? 0.12 : 0.0)
+        opacity: clickArea.pressed ? 0.18 : (clickArea.containsMouse ? 0.12 : 0.0)
         Behavior on opacity {
             NumberAnimation {
                 duration: 200

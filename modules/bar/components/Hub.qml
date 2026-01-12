@@ -22,7 +22,7 @@ Styled.BarRectangle {
         anchors.horizontalCenterOffset: 1
         text: ""
         font.pointSize: Configs.Appearance.hubIconFontSize
-        color: Configs.Settings.isDarkMode ? "#89b4fa" : "#1e66f5"
+        color: Configs.Color.hubIconColor
         scale: hubHover.hovered ? Configs.Appearance.barElementsHoverScale : 1
         rotation: hubHover.hovered ? Configs.Appearance.barElementsHoverRotation : 0
     }

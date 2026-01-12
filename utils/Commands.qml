@@ -4,8 +4,7 @@ import Quickshell
 
 Singleton {
     function sh(cmd) {
-        return ["bash", "-c", cmd]
-        // change "bash" to "fish" or other shell if needed
+        return [Quickshell.env("SHELL"), "-c", cmd]
     }
 
     function det(cmd) {
