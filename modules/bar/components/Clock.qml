@@ -1,87 +1,46 @@
-import "../popouts"
-import qs.config
-import qs.services
 import QtQuick
-import Quickshell
+import QtQuick.Layouts
+import qs.configs as Configs
+import qs.services as Services
+import qs.styled as Styled
 
-Rectangle {
-    id: clockElement
+Styled.BarRectangle {
+    id: clockRoot
 
-    required property ShellScreen screen
+    Layout.alignment: Qt.AlignVCenter
+    Layout.preferredHeight: Configs.Appearance.barElementsHeight
+    Layout.preferredWidth: clockRow.implicitWidth + Configs.Appearance.barElementsMinWidth
+    radius: Configs.Appearance.barElementRadius
+    color: Configs.Color.barElementBg
+    clip: true
+    scale: clockPress.pressed ? Configs.Appearance.barElementsClickScale : 1
 
-    width: AppearanceConfig.clock_width
-    height: AppearanceConfig.bar_element_height
-    radius: AppearanceConfig.bar_element_radius
-    color: ColorConfig.bar_element
+    RowLayout {
+        id: clockRow
 
-    Rectangle {
-        anchors {
-            top: parent.top
-            left: parent.left
-            bottom: parent.bottom
+        anchors.centerIn: parent
+        spacing: 8
+        Styled.BarText {
+            text: Services.Time.format("ddd, MMM d")
+            font.pointSize: 10
         }
-        width: AppearanceConfig.bar_icon_width
-        radius: AppearanceConfig.bar_element_radius
-        color: ColorConfig.bar_accent
-
-        Rectangle {
-            anchors {
-                top: parent.top
-                right: parent.right
-                bottom: parent.bottom
-            }
-            width: AppearanceConfig.straight_rectangle_width
-            color: parent.color
+        Styled.BarText {
+            text: "•"
+            font.pointSize: 16
         }
-
-        Text {
-            anchors.centerIn: parent
-            text: "󰥔"
-            font.pixelSize: AppearanceConfig.bar_icon_font_size
+        Styled.BarText {
+            text: Services.Time.format("h:mm AP")
+            font.weight: 600
         }
-    }
-
-    Rectangle {
-        anchors {
-            top: parent.top
-            right: parent.right
-            bottom: parent.bottom
-        }
-        width: AppearanceConfig.clock_width - AppearanceConfig.bar_icon_width
-        radius: AppearanceConfig.bar_element_radius
-        color: ColorConfig.bar_element
-
-        Rectangle {
-            anchors {
-                top: parent.top
-                left: parent.left
-                bottom: parent.bottom
-            }
-            width: AppearanceConfig.straight_rectangle_width
-            color: parent.color
-        }
-
-        Text {
-            anchors.centerIn: parent
-            text: Time.format("hh:mm A")
-            font.family: AppearanceConfig.bar_element_font_family
-            font.pixelSize: AppearanceConfig.bar_element_font_size
-            color: ColorConfig.bar_text
-        }
-
     }
 
     MouseArea {
-        anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        onClicked: function() {
-            timePopout.visible = !timePopout.visible
-        }
-    }
+        id: clockPress
 
-    TimePopout {
-        id: timePopout
-        screen: clockElement.screen
-        visible: false
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton
+        onClicked: {
+            // TODO: Open a calendar popup, toggle visibility on a popup?
+        }
     }
 }

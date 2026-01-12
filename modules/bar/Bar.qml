@@ -1,85 +1,98 @@
-import "components"
-import qs.config
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
+import qs.configs as Configs
+import qs.services as Services
+import "components"
 
 PanelWindow {
     id: barRoot
 
-    required property ShellScreen modelData
+    property var hyCache: Services.Cache {}
+    property int activeWsId: Hyprland.focusedMonitor?.activeWorkspace?.id ?? 1
 
-    screen: modelData
-    anchors {
-        top: true
-        left: true
-        right: true
-    }
-    implicitHeight: AppearanceConfig.bar_bg_height
+    anchors { top: true; left: true; right: true }
+    implicitHeight: Configs.Appearance.barBgHeight
+    exclusiveZone: implicitHeight
     color: "transparent"
 
-    // Shadow Effect for the Bar
-    RectangularShadow {
-        anchors.fill: barBackground
-        radius: barBackground.radius
-        blur: 3
-        spread: 4
-        color: ColorConfig.bar_shadow
+    // Event Listener + scheduleRebuild
+    Connections {
+        target: Hyprland
+        function onRawEvent(ev) {
+            if (!ev || !ev.name) {
+                console.log("Invalid Hyprland event received:", ev)
+                return
+            }
+
+            if (ev.name === "openwindow" || ev.name === "closewindow" ||
+                    ev.name === "movewindowv2" || ev.name === "workspacev2" ||
+                    ev.name === "activewindowv2" || ev.name === "urgent") {
+
+                // Re-fetch the window list from Hyprland immediately
+                Hyprland.refreshToplevels()
+                barRoot.hyCache.scheduleRebuild()
+            }
+        }
     }
 
-    // Rectangle shape for the Bar
-    Rectangle {
-        id: barBackground
-
-        anchors.centerIn: parent        
-        width: parent.width - AppearanceConfig.between_bar_and_screen_hori
-        height: parent.height - AppearanceConfig.between_bar_and_screen_vert
-        radius: AppearanceConfig.bar_radius
-        color: ColorConfig.bar_base
-    }
-
-    // Left Side Elements
+    // Left Side Elements: Hub, Workspaces
     RowLayout {
-        id: leftButtons
+        id: leftElements
 
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.left: barBackground.left
-        anchors.leftMargin: AppearanceConfig.bar_element_margin
-        spacing: AppearanceConfig.bar_element_spacing
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        anchors.topMargin: Configs.Appearance.barElementsTopMargin
+        anchors.leftMargin: Configs.Appearance.barElementsSideMargin
+        spacing: Configs.Appearance.barElementsSpacing
 
-        // Control Panel
-        // ControlButton {}
+        // Hub
+        Hub {}
 
         // Workspaces
-        Workspaces {}
+        Workspaces {
+            activeWsId: barRoot.activeWsId
+            hyCache: barRoot.hyCache
+        }
 
         // Hardware Stats
 
         // Package List
-    
     }
+
+
+
 
     // Center Elements
-    RowLayout {
-        id: centerButtons
+    // RowLayout {
+    //     id: centerButtons
 
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.horizontalCenter: barBackground.horizontalCenter
-        spacing: AppearanceConfig.bar_element_spacing
+    //     anchors.verticalCenter: barBackground.verticalCenter
+    //     anchors.horizontalCenter: barBackground.horizontalCenter
+    //     spacing: AppearanceConfig.bar_element_spacing
 
-        // Media Play Panel
+    //     // Media Play Panel
 
-    }
+    // }
 
     // Right Side Elements
     RowLayout {
         id: rightButtons
-        
-        anchors.verticalCenter: barBackground.verticalCenter
-        anchors.right: barBackground.right
-        anchors.rightMargin: AppearanceConfig.bar_element_margin
-        spacing: AppearanceConfig.bar_element_spacing
+
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.topMargin: Configs.Appearance.barElementsTopMargin
+        anchors.rightMargin: Configs.Appearance.barElementsSideMargin
+        spacing: Configs.Appearance.barElementsSpacing
+
+        Text {
+            text: Configs.Settings.isDarkMode ? "Dark Mode" : "Light Mode"
+        }        
+
+        // Package List
 
         // Network Panel
 
@@ -89,14 +102,11 @@ PanelWindow {
 
         // Volume Panel
 
-        // Clock/Time
-        Clock {
-            screen: barRoot.modelData
-        }
-
-
         // System Tray
 
+        // Clock
+        Clock {}
+
         // Notifications
-    }
+    }    
 }

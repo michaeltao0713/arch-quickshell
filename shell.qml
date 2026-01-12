@@ -1,16 +1,22 @@
 //@ pragma UseQApplication
 
-import "modules/bar"
 import Quickshell
+import "modules/bar" as Bar
 
 ShellRoot{
-    // Lazy Load the Bar component on every screen
-    LazyLoader { active: true; component:
-        Variants {
-            model: Quickshell.screens
+    id: root
 
-            Bar {
-                modelData: modelData
+    Variants {
+        model: Quickshell.screens
+
+        // Separate scope for each screen variant. Individual Bar instances.
+        Scope {
+            id: variant
+
+            property var modelData
+
+            Bar.Bar {
+                screen: variant.modelData
             }
         }
     }
