@@ -16,9 +16,9 @@ Singleton {
 
     readonly property int barElementsDuration: 200
     readonly property double barElementsOvershoot: 2
-    readonly property double barElementsClickScale: 0.90
+    readonly property double barElementsClickScale: 0.96
     readonly property double barElementsHoverScale: 1.2
-    readonly property int barElementsHoverRotation: -10
+    readonly property int barElementsHoverRotation: -10  
 
     // Workspaces
     readonly property int wsActiveHeight: 24

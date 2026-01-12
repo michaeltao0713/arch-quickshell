@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import qs.configs as Configs
 import qs.styled as Styled
 
-Rectangle {
+Styled.BarRectangle {
     id: hubRoot
 
     Layout.alignment: Qt.AlignVCenter
@@ -12,14 +12,6 @@ Rectangle {
     radius: Configs.Appearance.barElementRadius
     color: Configs.Color.barElementBg
     scale: hubPress.pressed ? Configs.Appearance.barElementsClickScale : 1
-
-    Behavior on scale {
-        NumberAnimation {
-            duration: Configs.Appearance.barElementsDuration
-            easing.type: Easing.OutBack
-            easing.overshoot: Configs.Appearance.barElementsOvershoot
-        }
-    }
 
     HoverHandler {
         id: hubHover

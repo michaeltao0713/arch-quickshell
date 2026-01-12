@@ -12,6 +12,9 @@ Singleton {
     // Bar Elements
     readonly property color barElementBg: Qt.alpha(colors["on-background"], 0.2)
 
+    readonly property color barElementShimmerColor: Qt.alpha(colors["on-background"], 0.2)
+    readonly property color barElementOpacityColor: colors["on-background"]
+
     // Workspaces
     readonly property color wsBgActiveColor: Qt.alpha(colors["tertiary"], 0.8)
     readonly property color wsBgHoverColor: Qt.alpha(colors["secondary"], 0.8)

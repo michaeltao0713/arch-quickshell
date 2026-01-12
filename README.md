@@ -4,6 +4,8 @@ Heavy inspiration from https://github.com/snes19xx/surface-dots/tree/main/.confi
 
 ## Setup:
 
+Install `quickshell-git` and other packages from AUR. Need `qt6-5compat` for effects.
+
 Create empty text file: `.qmlls.ini` under `quickshell/`.
 
 Create `exec-once` rule in `hyprland.conf`.
@@ -41,8 +43,8 @@ Install `matugen` for dynamic color from wallpaper. Use with `vibrant` type for 
  - [ ] Volume Info and Controls
  - [ ] System Tray
  - [ ] Clock
-   - [ ] Displays time
-   - [ ] Displays date
+   - [x] Displays time
+   - [x] Displays date
    - [ ] Opens Calendar on click
  - [ ] Notifications
  - [ ] Dynamic Color based on Wallpaper
