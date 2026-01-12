@@ -103,7 +103,7 @@ Rectangle {
                 property var wsWindows: wsRoot.hyCache.wsMap[wsId] ?? []
                 property int winCount: wsWindows.length
                 property bool hasWindows: winCount > 0
-                property bool isUrgent: wsWindows.some(tl => tl.urgent)
+                property bool isUrgent: wsWindows.some(tl => tl && tl.urgent)                
 
                 y: wsPress.pressed ? Configs.Appearance.wsIconElevation : ((!isActive && wsHover.hovered) ? -Configs.Appearance.wsIconElevation : 0)
                 width: hasWindows ? (winCount * Configs.Appearance.wsIconSize + 12) : height
@@ -162,17 +162,18 @@ Rectangle {
                             QtObject {
                                 id: urgentColorAnimation
 
-                                property color urgentColor: Configs.Color.wsIconInactiveColor
+                                property color urgentColor: Configs.Color.wsIconUrgentColor2
+
                                 SequentialAnimation on urgentColor {
                                     running: itemRoot.modelData.urgent
                                     loops: Animation.Infinite
                                     ColorAnimation {
                                         to: Configs.Color.wsIconUrgentColor1
-                                        duration: 400
+                                        duration: 1000
                                     }
                                     ColorAnimation {
                                         to: Configs.Color.wsIconUrgentColor2
-                                        duration: 400
+                                        duration: 1000
                                     }
                                 }
                             }
@@ -184,6 +185,9 @@ Rectangle {
                                 lineHeight: 0.8
                                 color: wsDelegate.isActive ? Configs.Color.wsIconActiveColor : (itemRoot.modelData.urgent ? urgentColorAnimation.urgentColor : (wsHover.hovered ? Configs.Color.wsIconHoverColor : Configs.Color.wsIconInactiveColor))
                                 scale: (wsDelegate.isActive && wsHover.hovered) ? 1.3 : 1
+
+                                // Empty Behavior to override inherited one
+                                Behavior on color {}
                             }
                         }
                     }
